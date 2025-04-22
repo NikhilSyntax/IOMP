@@ -9,6 +9,8 @@ const nodemailer = require('nodemailer');
 const app  = express();
 const port = 5000
 const ALPHA_VANTAGE_KEY = 'ZOWEIXKNV38XSERH';
+const { exec } = require('child_process');
+
 app.use(cors());
 app.use(bodyParser.json());
 
@@ -256,6 +258,115 @@ app.post('/api/add-transaction', (req,res) => {
 app.get('/api/get-transactions', (req,res) => res.json({ transactions }));
 app.get('/api/get-balance',      (req,res) => res.json({ balance }));
 
+// Improved checkBudgetRisk function
+app.get("/api/check-budget-risk", (req, res) => {
+  checkBudgetRisk(req, res).catch(error => {
+      console.error('Unhandled error in checkBudgetRisk:', error);
+      res.status(500).json({
+          status: 'error',
+          message: 'Internal server error during risk assessment'
+      });
+  });
+});
+
+async function checkBudgetRisk(req, res) {
+  try {
+      // Load and validate data
+      const transactions = loadData(TX_FILE, []);
+      const { budgetLimits } = loadData(GOAL_FILE, {
+          budgetLimits: {
+              essentialsLimit: 1,  // Avoid division by zero
+              nonEssentialsLimit: 1,
+              investmentsLimit: 1
+          }
+      });
+
+      // Calculate spending totals
+      const spending = transactions.reduce((acc, tx) => {
+          if (tx.type === 'expense' && acc[tx.category] !== undefined) {
+              acc[tx.category] += tx.amount;
+          }
+          return acc;
+      }, {
+          Essentials: 0,
+          NonEssentials: 0,
+          Investments: 0
+      });
+
+      // Calculate usage percentages
+      const usage = {
+          essentials: (spending.Essentials / budgetLimits.essentialsLimit) * 100,
+          nonEssentials: (spending.NonEssentials / budgetLimits.nonEssentialsLimit) * 100,
+          investments: (spending.Investments / budgetLimits.investmentsLimit) * 100
+      };
+
+      // Execute Python script
+      const { stdout, stderr } = await promisify(exec)(
+          `python ${path.join(__dirname, 'risk_cluster.py')} '${JSON.stringify(usage)}'`
+      );
+
+      const result = JSON.parse(stdout);
+      if (result.status !== 'success') {
+          throw new Error(result.message);
+      }
+
+      // Generate recommendations
+      const recommendations = [];
+      const { risk_levels } = result;
+
+      if (risk_levels.essentials === 'high') {
+          recommendations.push("Urgent: Reduce essential spending immediately");
+      }
+
+      if (risk_levels.nonEssentials === 'high') {
+          recommendations.push("Warning: Cut discretionary spending");
+      }
+
+      if (risk_levels.investments === 'low' && usage.investments < 50) {
+          recommendations.push("Consider increasing investments");
+      }
+
+      // Prepare response
+      res.json({
+          status: 'success',
+          riskLevels: risk_levels,
+          spending: {
+              essentials: {
+                  spent: spending.Essentials,
+                  limit: budgetLimits.essentialsLimit,
+                  percentage: usage.essentials
+              },
+              nonEssentials: {
+                  spent: spending.NonEssentials,
+                  limit: budgetLimits.nonEssentialsLimit,
+                  percentage: usage.nonEssentials
+              },
+              investments: {
+                  spent: spending.Investments,
+                  limit: budgetLimits.investmentsLimit,
+                  percentage: usage.investments
+              }
+          },
+          recommendations: recommendations.length ? recommendations : ["All categories within safe limits"],
+          lastUpdated: new Date().toISOString()
+      });
+
+  } catch (error) {
+      console.error('Risk assessment failed:', error);
+      res.status(500).json({
+          status: 'error',
+          message: 'Failed to assess budget risk',
+          details: error.message
+      });
+  }
+}
+
+// Helper to promisify exec
+const promisify = require('util').promisify;
+
+app.listen(5000, () => {
+  console.log("Server running on port 5000");
+});
 // ────────────────────────────────
 // 3) Summaries & breakdowns
 // ────────────────────────────────

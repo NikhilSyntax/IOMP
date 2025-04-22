@@ -1,8 +1,8 @@
 {
-  "goal": 60000,
+  "goal": 177000,
   "budgetLimits": {
-    "essentialsLimit": 30000,
-    "nonEssentialsLimit": 18000,
-    "investmentsLimit": 60000
+    "essentialsLimit": 213500,
+    "nonEssentialsLimit": 128100,
+    "investmentsLimit": 85400
   }
 }
