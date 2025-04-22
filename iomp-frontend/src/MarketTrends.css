@@ -1,0 +1,171 @@
+/* MarketTrends.css */
+:root {
+    --primary-color: #4361ee;
+    --positive-color: #4cc9f0;
+    --negative-color: #f72585;
+    --text-color: #2b2d42;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --border-radius: 12px;
+    --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  }
+  
+  .market-trends {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    color: var(--text-color);
+  }
+  
+  .market-trends h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+    color: var(--primary-color);
+  }
+  
+  .controls {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .controls select {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: var(--border-radius);
+    background-color: var(--card-bg);
+    font-size: 1rem;
+    min-width: 200px;
+    transition: all 0.3s ease;
+  }
+  
+  .controls select:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+  }
+  
+  .controls button {
+    padding: 0.75rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .controls button:hover {
+    background-color: #3a56d4;
+    transform: translateY(-1px);
+  }
+  
+  .controls button:disabled {
+    background-color: #adb5bd;
+    cursor: not-allowed;
+    transform: none;
+  }
+  
+  .chart-container {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 2rem;
+  }
+  
+  .market-summary {
+    background: var(--card-bg);
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+  }
+  
+  .market-summary h3 {
+    margin-top: 0;
+    color: var(--primary-color);
+  }
+  
+  .price-display {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .current-price {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  
+  .change {
+    font-size: 1.25rem;
+    font-weight: 500;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+  }
+  
+  .positive {
+    color: var(--positive-color);
+    background-color: rgba(76, 201, 240, 0.1);
+  }
+  
+  .negative {
+    color: var(--negative-color);
+    background-color: rgba(247, 37, 133, 0.1);
+  }
+  
+  .additional-info {
+    color: #6c757d;
+    font-size: 0.95rem;
+  }
+  
+  .loading-spinner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    font-size: 1.25rem;
+    color: var(--primary-color);
+  }
+  
+  .alert {
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    margin-bottom: 1.5rem;
+    background-color: #fff3bf;
+    color: #5c3c00;
+  }
+  
+  /* Animation for refresh */
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
+  .refreshing {
+    display: inline-block;
+    animation: spin 1s linear infinite;
+    margin-right: 8px;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .chart-container {
+      padding: 1rem;
+    }
+    
+    .price-display {
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .current-price {
+      font-size: 1.75rem;
+    }
+  }

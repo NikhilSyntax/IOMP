@@ -1,0 +1,65 @@
+[
+  {
+    "amount": 50000,
+    "subcategory": "Salary",
+    "category": "Income",
+    "type": "income",
+    "date": "2025-04-22T14:54:51.763Z"
+  },
+  {
+    "amount": 10000,
+    "subcategory": "Salary",
+    "category": "Income",
+    "type": "income",
+    "date": "2025-04-22T14:57:21.994Z"
+  },
+  {
+    "amount": 50000,
+    "subcategory": "Salary",
+    "category": "Income",
+    "type": "income",
+    "date": "2025-04-22T15:02:23.230Z"
+  },
+  {
+    "amount": 50000,
+    "subcategory": "Investment Funds",
+    "category": "Investments",
+    "type": "expense",
+    "date": "2025-04-22T15:04:09.470Z"
+  },
+  {
+    "amount": 50000,
+    "subcategory": "Salary",
+    "category": "Income",
+    "type": "income",
+    "date": "2025-04-22T15:04:21.750Z"
+  },
+  {
+    "amount": 50000,
+    "subcategory": "Salary",
+    "category": "Income",
+    "type": "income",
+    "date": "2025-04-22T15:04:35.654Z"
+  },
+  {
+    "amount": 16000,
+    "subcategory": "Food",
+    "category": "Essentials",
+    "type": "expense",
+    "date": "2025-04-22T15:14:44.862Z"
+  },
+  {
+    "amount": 67777,
+    "subcategory": "Entertainment",
+    "category": "NonEssentials",
+    "type": "expense",
+    "date": "2025-04-22T15:14:56.325Z"
+  },
+  {
+    "amount": 100000,
+    "subcategory": "Salary",
+    "category": "Income",
+    "type": "income",
+    "date": "2025-04-22T15:16:38.966Z"
+  }
+]

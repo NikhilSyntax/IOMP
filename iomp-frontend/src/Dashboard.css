@@ -1,0 +1,126 @@
+/* Container for the whole dashboard */
+.dashboard-container {
+  padding: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  font-family: Arial, sans-serif;
+}
+
+/* Section for the balance */
+.balance-container {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.balance-container h3 {
+  font-size: 26px;
+  color: #ffffff;
+}
+
+/* Section for the chart */
+.chart-container {
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  padding: 30px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  flex-direction: column;
+}
+
+.chart-container canvas {
+  width: 100% !important;
+  max-width: 800px;
+  height: 400px !important;
+  margin-bottom: 20px;
+}
+
+/* Section for budget breakdown */
+.budget-status-container {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.budget-status-container h3 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 15px;
+}
+
+.budget-status-container p {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.budget-status-container strong {
+  font-weight: bold;
+}
+
+/* Input + Button for updating Investment Goal */
+.budget-status-container input[type='number'] {
+  padding: 6px 10px;
+  font-size: 16px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  width: 160px;
+  margin-right: 10px;
+}
+
+.budget-status-container button {
+  padding: 6px 12px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.budget-status-container button:hover {
+  background-color: #0056b3;
+}
+
+.budget-status-container span {
+  font-size: 14px;
+}
+
+/* Responsive design for mobile */
+@media (max-width: 768px) {
+  .dashboard-container {
+    padding: 10px;
+  }
+
+  .chart-container {
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  .budget-status-container {
+    margin-top: 20px;
+  }
+
+  .budget-status-container input[type='number'] {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .budget-status-container button {
+    width: 100%;
+  }
+}
+.budget-status-container,
+.budget-status-container p,
+.budget-status-container strong,
+.budget-status-container span,
+.budget-status-container input,
+.budget-status-container button {
+  color: #333 !important;
+}

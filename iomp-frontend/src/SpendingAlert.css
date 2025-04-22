@@ -1,0 +1,89 @@
+.spending-alert-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    z-index: 1000;
+    max-width: 400px;
+  }
+  
+  .alert-box {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    border-left: 5px solid #ff4757;
+    overflow: hidden;
+  }
+  
+  .alert-header {
+    background: #ff4757;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .close-btn {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  .alert-body {
+    padding: 20px;
+  }
+  
+  .spending-comparison {
+    display: flex;
+    gap: 20px;
+    margin: 15px 0;
+  }
+  
+  .spending-category {
+    flex: 1;
+  }
+  
+  .current {
+    font-weight: bold;
+    color: #ff4757;
+    font-size: 18px;
+  }
+  
+  .usual {
+    color: #576574;
+    font-size: 14px;
+  }
+  
+  .alert-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+  }
+  
+  .view-details-btn {
+    background: #ff4757;
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 2;
+  }
+  
+  .snooze-btn {
+    background: #dfe6e9;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    flex: 1;
+  }
+  
+  .loading-indicator {
+    padding: 15px;
+    background: #f1f2f6;
+    border-radius: 5px;
+    text-align: center;
+  }
